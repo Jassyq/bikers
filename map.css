@@ -24,3 +24,67 @@ body {
   pointer-events: none;
 
 }
+
+body > label {
+  display: block;
+  width: 100%;
+  text-align: right;
+  margin: 1em 0;
+}
+
+#time-display,
+#any-time {
+  display: block;
+  text-align: right;
+}
+
+circle {
+  --color-departures: steelblue;
+  --color-arrivals: darkorange;
+  --color: color-mix(
+  in oklch,
+  var(--color-departures) calc(100% * var(--departure-ratio)),
+  var(--color-arrivals)
+);
+fill: var(--color);
+}
+
+/* Legend*/
+.legend {
+  display: flex;
+  align-items: center;
+  gap: 2rem;                   /* big gap between each item */
+  margin: 1rem 0;              /* space above/below */
+}
+.legend::before {
+  content: "Legend:";
+  font-weight: 600;
+  color: #667;
+  margin-right: 1rem;
+}
+
+.legend > div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;                
+}
+
+.legend > div::before {
+  content: "";
+  display: inline-block;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: steelblue;
+}
+
+.legend > div:nth-child(1)::before {
+  background: steelblue;       /* “More departures” */
+}
+.legend > div:nth-child(2)::before {
+  background: #b282ea;         /* “Balanced” (purple) */
+}
+.legend > div:nth-child(3)::before {
+  background: orange;          /* “More arrivals” */
+}
